@@ -6,6 +6,8 @@ export class Question {
         this.question = data.question
         this.correctAnswer = data.correct_answer
         this.incorrectAnswers = data.incorrect_answers
+        this.answerContent = []
+
     }
 
     get questionTemplate(){
@@ -17,15 +19,32 @@ export class Question {
             </div>
             <div>
                 <p>${this.question}</p>
-                <div>
-                    <i type="button" class="d-flex mdi mdi-circle" id="answers">
-                        <p class="mx-2">${this.correctAnswer}</p>
-                        <p class="mx-2"> ${this.incorrectAnswers}</p>         
-                    </i>
-                </div>
+                <div>${this.answersFormatted}</div>
             </div>
         </div>
         `
     }
 
+    get answersFormatted() {
+        const answers = [this.correctAnswer, ...this.incorrectAnswers]; // Flatten the array
+        answers.sort(() => Math.random() - 0.5); // Shuffle
+        this.answerContent = answers; // Store in class property
+
+        // Generate individual HTML elements for each answer
+        return answers.map(answer => `
+            <i type="button" class="d-flex mdi mdi-circle" id="answers">
+                <div class="mx-2">${answer}</div>        
+            </i>
+        `).join('');
+    }
+
+    get categoryTemplate(){
+        return /*html*/ `
+        <div>
+            <button onClick = "app.QuestionController.drawCategory('${this.category}')">
+                ${this.category}
+            </button>
+        </div>
+        `
+    }
 }

@@ -6,6 +6,8 @@ export class QuestionController {
     constructor() {
       console.log('Controller Registered');
       this.getQuestions()
+      this.drawCategories()
+      AppState.on('questions', this.drawCategories)
       AppState.on('questions', this.drawQuestions)
     }
 
@@ -23,4 +25,23 @@ export class QuestionController {
         if (!questionsElm){return}
         questionsElm.innerHTML = questionsContent
     }
+
+    drawCategories(){
+        console.log('drawing Categories')
+        console.log('categoryArray : ', AppState.category)
+        const category = AppState.category
+        const categoryElm = document.getElementById('category')
+        let categoryContent = ''
+        console.log('category array again', category)
+        category.forEach(category => categoryContent += /*html*/ `
+                <button onClick = "app.QuestionController.drawCategory('${category}')">
+                    ${category}
+                </button>
+            `)
+        console.log('categoryContent : ', categoryContent)
+        if (!categoryElm){return}
+        categoryElm.innerHTML = categoryContent
+        console.log('categoryElm :', categoryElm.innerHTML)
+    }
+
 }
