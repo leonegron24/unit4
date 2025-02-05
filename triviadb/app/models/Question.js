@@ -41,7 +41,7 @@ export class Question {
     get categoryTemplate(){
         return /*html*/ `
         <div>
-            <button onClick = "app.QuestionController.drawCategory('${this.category}')">
+            <button onClick = "app.QuestionController.drawCategory('${this.category}')>
                 ${this.category}
             </button>
         </div>

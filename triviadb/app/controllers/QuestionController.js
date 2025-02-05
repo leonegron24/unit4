@@ -7,7 +7,7 @@ export class QuestionController {
       console.log('Controller Registered');
       this.getQuestions()
       this.drawCategories()
-      AppState.on('questions', this.drawCategories)
+      AppState.on('category', this.drawCategories)
       AppState.on('questions', this.drawQuestions)
     }
 
@@ -29,10 +29,9 @@ export class QuestionController {
     drawCategories(){
         console.log('drawing Categories')
         console.log('categoryArray : ', AppState.category)
-        const category = AppState.category
+        const category = [... new Set(AppState.category)]
         const categoryElm = document.getElementById('category')
         let categoryContent = ''
-        console.log('category array again', category)
         category.forEach(category => categoryContent += /*html*/ `
                 <button onClick = "app.QuestionController.drawCategory('${category}')">
                     ${category}
