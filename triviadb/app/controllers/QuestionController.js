@@ -33,7 +33,7 @@ export class QuestionController {
         const categoryElm = document.getElementById('category')
         let categoryContent = ''
         category.forEach(category => categoryContent += /*html*/ `
-                <button onClick = "app.QuestionController.drawCategory('${category}')">
+                <button class="col-3 mt-2 btn btn-success p-2" onClick = "app.QuestionController.ChooseCategory('${category}')">
                     ${category}
                 </button>
             `)
@@ -42,5 +42,7 @@ export class QuestionController {
         categoryElm.innerHTML = categoryContent
         console.log('categoryElm :', categoryElm.innerHTML)
     }
+
+
 
 }
