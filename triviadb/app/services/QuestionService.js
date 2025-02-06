@@ -10,13 +10,21 @@ class QuestionsService {
        console.log(response);
        const questionData = await response.json()
        console.log('questionData:', questionData) 
-       const questions = questionData.results.map(questionData => new Question(questionData))
+       const questions = questionData.results.map(q => new Question(q))
        console.log('mapped questions', questions)
        AppState.questions = questions
-       AppState.category = AppState.questions.map(questions => questions.category);
-       console.log('service category ', AppState.category)
+      //  AppState.category = AppState.questions.map(questions => questions.category);
+      //  console.log('service category ', AppState.category)
     }
 
+    async getCategories(){
+      const response = await fetch('https://opentdb.com/api_category.php')
+      console.log('category response', response)
+      const categoryData = await response.json()
+      console.log('categoryData', categoryData)
+      const categories = categoryData.trivia_categories.map(c => c.name )
+      AppState.categories = categories
+    }
   }
   
   export const questionsService = new QuestionsService()

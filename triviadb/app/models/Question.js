@@ -32,7 +32,7 @@ export class Question {
 
         // Generate individual HTML elements for each answer
         return answers.map(answer => `
-            <i type="button" class="d-flex mdi mdi-circle" id="answers">
+            <i role="button" class="d-flex mdi mdi-circle" id="answers">
                 <div class="mx-2">${answer}</div>        
             </i>
         `).join('');
