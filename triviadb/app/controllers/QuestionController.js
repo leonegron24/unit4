@@ -9,7 +9,6 @@ export class QuestionController {
     //   this.drawCategories()
       questionsService.getCategories()
       AppState.on('categories', this.drawCategories)
-      AppState.on('questions', this.drawQuestions)
     }
 
 
@@ -17,11 +16,13 @@ export class QuestionController {
         await questionsService.getQuestions()
     }
 
-    drawQuestions(){
+    drawQuestions(category){
         console.log('drawing Questions')
         const questions = AppState.questions
+        const categorizedQuestions = questions.filter(q => q.category = category)
+        console.log('categorizedQuestions', categorizedQuestions)
         let questionsContent = ''
-        questions.forEach(question => questionsContent  += question.questionTemplate)
+        categorizedQuestions.forEach(question => questionsContent  += question.questionTemplate)
         let questionsElm = document.getElementById('question')
         if (!questionsElm){return}
         questionsElm.innerHTML = questionsContent
@@ -34,7 +35,7 @@ export class QuestionController {
         const categoryElm = document.getElementById('category')
         let categoryContent = ''
         category.forEach(category => categoryContent += /*html*/ `
-                <button class="col-3 mt-2 btn btn-success p-2" onClick = "app.QuestionController.ChooseCategory('${category}')">
+                <button class="col-3 mt-2 btn btn-success p-2" onClick = "app.QuestionController.chooseCategory('${category}')">
                     ${category}
                 </button>
             `)
@@ -43,6 +44,16 @@ export class QuestionController {
 
     }
 
+    chooseCategory(category){
+        console.log('choosing category...')
+        const categories = AppState.categories
+        const cat = categories.find(c => c === category)
+        this.drawQuestions(cat)
+    }
 
+    checkUsersAnswer(answer){
+        const questions = AppState.questions
+        
+    }
 
 }

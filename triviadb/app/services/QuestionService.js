@@ -13,8 +13,6 @@ class QuestionsService {
        const questions = questionData.results.map(q => new Question(q))
        console.log('mapped questions', questions)
        AppState.questions = questions
-      //  AppState.category = AppState.questions.map(questions => questions.category);
-      //  console.log('service category ', AppState.category)
     }
 
     async getCategories(){
