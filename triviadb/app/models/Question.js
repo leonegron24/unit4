@@ -32,19 +32,9 @@ export class Question {
 
         // Generate individual HTML elements for each answer
         return answers.map(answer => `
-            <i role="button" class="d-flex mdi mdi-circle" id="answers" onClick = "app.QuestionsController.checkUsersAnswer(answer)">
+            <i role="button" class="d-flex mdi mdi-circle" id="answers" onclick = "app.QuestionController.checkUsersAnswer('${answer}')">
                 <div class="mx-2">${answer}</div>        
             </i>
         `).join('');
-    }
-
-    get categoryTemplate(){
-        return /*html*/ `
-        <div>
-            <button onClick = "app.QuestionController.drawCategory('${this.category}')>
-                ${this.category}
-            </button>
-        </div>
-        `
     }
 }

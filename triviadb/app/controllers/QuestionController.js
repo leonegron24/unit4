@@ -35,7 +35,7 @@ export class QuestionController {
         const categoryElm = document.getElementById('category')
         let categoryContent = ''
         category.forEach(category => categoryContent += /*html*/ `
-                <button class="col-3 mt-2 btn btn-success p-2" onClick = "app.QuestionController.chooseCategory('${category}')">
+                <button class="col-3 mt-2 btn btn-success p-2" onclick = "app.QuestionController.chooseCategory('${category}')">
                     ${category}
                 </button>
             `)
@@ -52,8 +52,18 @@ export class QuestionController {
     }
 
     checkUsersAnswer(answer){
+        console.log('checking answer')
         const questions = AppState.questions
-        
+        const correctAnswers = questions.map(a => a = a.correctAnswer)
+        console.log('correctAnswers ',correctAnswers)
+        const verifyAnswer = correctAnswers.find(a => a == answer )
+        console.log('verify answer :',verifyAnswer)
+        if (!verifyAnswer){window.alert('Incorrect')}
+        else{
+            window.alert(verifyAnswer + " is Correct!")
+        }
+
+
     }
 
 }
