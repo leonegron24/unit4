@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": ".git",
+      "path": ".git"
+    },
+    {
+      "name": "asyncgregslist",
+      "path": "asyncgregslist"
+    },
+    {
+      "name": "triviadb",
+      "path": "triviadb"
+    }
+  ]
+}
