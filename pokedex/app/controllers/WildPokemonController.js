@@ -20,7 +20,7 @@ export class WildPokemonController {
 
     drawActivePokemon(){
         const activePokemon = AppState.activePokemon
-        let activeContent = activePokemon.name + ': ' + activePokemon.moves
+        let activeContent = activePokemon.activeTemplate
         setHTML('active-pokemon', activeContent)
     }
 
