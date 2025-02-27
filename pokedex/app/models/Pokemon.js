@@ -8,7 +8,7 @@ export class Pokemon {
 
     get ListTemplate(){
         return /*html*/ `
-        <div class="btn text-start mx-3" role="button" onclick="app.WildPokemonController.getActivePokemon('${this.name}')">${this.name}</div>
+        <div class="btn d-flex" role="button" onclick="app.WildPokemonController.getActivePokemon('${this.name}')">${this.name}</div>
         `
     }
 
@@ -31,13 +31,15 @@ export class SandboxPokemon extends Pokemon {
 
     get activeTemplate(){
         return /*html*/ `
-        <div class="bg-light shadow p-4 bg-primary">  
-            <div class=" mb-0 row text-center">
+        <div class="bg-light shadow p-4 bg-primary sticky-top">  
+            <div class=" mb-0 row text-center justify-content-center">
                 <h2 class='mb-0'>${this.name.charAt(0).toUpperCase() + this.name.slice(1)}</h2>
+                <div type="btn" class="d-none button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon('${this.id}')"> Catch! </div>
             </div>
+
             <div class=" mt-0 row img-fluid fs-1">
-                <img class="col-6" src="${this.img.front_default}" alt="">
-                <img class="col-6" src="${this.img.back_default}" alt="">
+                <img class="col-6" src="${this.img.front_shiny}" alt="">
+                <img class="col-6" src="${this.img.back_shiny}" alt="">
             </div>
             <div class="row p-4 justify-content-between bg-success">
                 <div class="col-5 border shadow bg-light">

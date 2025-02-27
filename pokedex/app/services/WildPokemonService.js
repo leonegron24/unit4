@@ -11,7 +11,7 @@ class WildPokemonService{
     
     
     async getPokemon() {
-        const response = await pokeApi.get('pokemon')
+        const response = await pokeApi.get('pokemon?limit=151')
         console.log('pokemon response: ', response.data)
         const pokemon = response.data.results.map(pokemonData => new Pokemon(pokemonData))
         AppState.wildPokemon = pokemon
