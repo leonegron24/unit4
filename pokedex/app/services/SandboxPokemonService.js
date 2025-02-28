@@ -30,24 +30,18 @@ class SanboxPokemonService{
       }
   }
 
-  async saveCaughtPokemon(){
-    try {
-      const caughtPokemon = AppState.listedPokemon
-      const response = api.save('caughtPokemon', caughtPokemon)
-      console.log(response.data)
-    } catch (error) {
-      Pop.toast("Could not save caught Pokemon List", 'error')
-      console.error(error)
-    }
+  async fetchCaughtPokemon() {
+    const response = await api.get('api/pokemon')
+    console.log('response: ',response)
+    const pokemon = response.data.map(pokemon => new Pokemon(pokemon))
+    AppState.listedPokemon = pokemon
+    console.log('pokemon:', pokemon)
+    console.log(AppState.listedPokemon)
   }
 
-  async loadCaughtPokemon(){
-    try {
-      
-    } catch (error) {
-      Pop.toast("Could not load caught Pokemon List", 'error')
-      console.error(error)
-    }
+  async deletePokemon(pokemonName){
+    const response = await api.delete('api/pokemon', pokemonName)
+    const newList = response.data
   }
 }
 export const sandboxPokemonService = new SanboxPokemonService()
