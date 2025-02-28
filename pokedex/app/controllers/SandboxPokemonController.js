@@ -23,10 +23,9 @@ export class SandboxPokemonController {
 
     drawSandboxList(){
         console.log('drawing list of caught pokemon!')
-        console.log(AppState.listedPokemon)
         const caughtList = AppState.listedPokemon
         let listContent = ''
-        caughtList.forEach(pokemon => listContent += pokemon.ListTemplate)
+        caughtList.forEach(pokemon => listContent += pokemon.caughtTemplate)
         setHTML('sandbox-list', listContent)
     }
     
@@ -39,9 +38,10 @@ export class SandboxPokemonController {
         }
     }
 
-    async deletePokemon(pokemonName){
+    async deletePokemon(pokemonId){
+        console.log('deleting pokemon:', pokemonId)
         try {
-            sandboxPokemonService.deletePokemon(pokemonName)
+            sandboxPokemonService.deletePokemon(pokemonId)
         } catch (error) {
             Pop.toast("Could not delete that Pokemon", 'error')
             console.error(error)

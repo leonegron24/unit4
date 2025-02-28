@@ -3,12 +3,22 @@ import { generateId } from "../utils/GenerateId.js"
 export class Pokemon {
     constructor(data) {
         this.name = data.name
-        
+        this.id = generateId()
     }
 
     get ListTemplate(){
         return /*html*/ `
         <div class="btn d-flex" role="button" onclick="app.WildPokemonController.getActivePokemon('${this.name}')">${this.name.charAt(0).toUpperCase()+this.name.slice(1)}</div>
+        `
+    }
+
+    get caughtTemplate(){
+        return /*html*/ `
+        <div class="btn d-flex justify-content-center justify-content-between">
+        ${this.name.charAt(0).toUpperCase()+this.name.slice(1)}
+        <button class="button btn-warning rounded-pill" onclick="app.SandboxPokemonController.deletePokemon('${this.id}')">Release Pokemon!</button>
+        </div>
+
         `
     }
 
