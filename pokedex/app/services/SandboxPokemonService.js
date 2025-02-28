@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Pokemon, SandboxPokemon } from "../models/Pokemon.js"
+import { Pop } from "../utils/Pop.js";
 import { api } from "./AxiosService.js"
 
 class SanboxPokemonService{
@@ -31,12 +32,22 @@ class SanboxPokemonService{
 
   async saveCaughtPokemon(){
     try {
-        
+      const caughtPokemon = AppState.listedPokemon
+      const response = api.save('caughtPokemon', caughtPokemon)
+      console.log(response.data)
     } catch (error) {
       Pop.toast("Could not save caught Pokemon List", 'error')
       console.error(error)
     }
   }
 
+  async loadCaughtPokemon(){
+    try {
+      
+    } catch (error) {
+      Pop.toast("Could not load caught Pokemon List", 'error')
+      console.error(error)
+    }
+  }
 }
 export const sandboxPokemonService = new SanboxPokemonService()
