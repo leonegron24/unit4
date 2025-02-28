@@ -8,7 +8,7 @@ export class Pokemon {
 
     get ListTemplate(){
         return /*html*/ `
-        <div class="btn d-flex" role="button" onclick="app.WildPokemonController.getActivePokemon('${this.name}')">${this.name}</div>
+        <div class="btn d-flex" role="button" onclick="app.WildPokemonController.getActivePokemon('${this.name}')">${this.name.charAt(0).toUpperCase()+this.name.slice(1)}</div>
         `
     }
 
@@ -34,7 +34,7 @@ export class SandboxPokemon extends Pokemon {
         <div class="bg-light shadow p-4 bg-primary sticky-top">  
             <div class=" mb-0 row text-center justify-content-center">
                 <h2 class='mb-0'>${this.name.charAt(0).toUpperCase() + this.name.slice(1)}</h2>
-                <div type="btn" class="d-none button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon('${this.id}')"> Catch! </div>
+                <div id="catch" type="btn" class="button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon()"> Catch! </div>
             </div>
 
             <div class=" mt-0 row img-fluid fs-1">

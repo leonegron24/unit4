@@ -9,6 +9,7 @@ export class WildPokemonController {
         this.getPokemon()
         AppState.on('wildPokemon', this.drawPokemon)
         AppState.on('activePokemon', this.drawActivePokemon)
+        AppState.on('account', this.drawPokemon)
     }
 
     drawPokemon(){
@@ -22,6 +23,8 @@ export class WildPokemonController {
         const activePokemon = AppState.activePokemon
         let activeContent = activePokemon.activeTemplate
         setHTML('active-pokemon', activeContent)
+        
+        
     }
 
     async getPokemon(){
@@ -40,6 +43,14 @@ export class WildPokemonController {
             Pop.toast("Could not get active Pokemon", 'error')
             console.error(error)
         }
+    }
+
+    showCatchButton(){
+        console.log('showing catch button')
+        const buttonElm = document.getElementById("catch-button")
+        console.log(buttonElm)
+        if (!buttonElm){return}
+        buttonElm.classList.remove("d-none")
     }
 
 }

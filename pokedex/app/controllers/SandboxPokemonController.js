@@ -7,14 +7,13 @@ export class SandboxPokemonController {
     constructor(){
         console.log('SandboxPokemon 🎛️')
         // SandboxController.js
-        AppState.on('caughtPokemon', this.drawSandboxList)
-        AppState.on('account', this.showCatchButton)
+        AppState.on('listedPokemon', this.drawSandboxList)
     }
 
-    async catchPokemon(pokemonId){
+    async catchPokemon(){
         try {
             console.log('catching pokemon...')
-            await sandboxPokemonService.catchPokemon(pokemonId)
+            await sandboxPokemonService.catchPokemon()
         } catch (error) {
             Pop.toast("Could not catch the Pokemon", 'error')
             console.error(error)
@@ -22,15 +21,12 @@ export class SandboxPokemonController {
     }
 
     drawSandboxList(){
-        const caughtPokemon = AppState.caughtPokemon
+        console.log('drawing list of caught pokemon!')
+        const caughtList = AppState.listedPokemon
         let listContent = ''
-        caughtPokemon.forEach(pokemon => listContent += pokemon.ListTemplate)
-        setHTML('sandbox-list', caughtPokemon)
+        caughtList.forEach(pokemon => listContent += pokemon.ListTemplate)
+        setHTML('sandbox-list', listContent)
     }
     
-    showCatchButton(){
-        const buttonElm = document.getElementById('catch-button')
-        if (!buttonElm){return}
-        buttonElm.classList.remove('d-none')
-    }
+    
 }
