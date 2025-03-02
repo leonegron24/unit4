@@ -45,12 +45,5 @@ export class WildPokemonController {
         }
     }
 
-    showCatchButton(){
-        console.log('showing catch button')
-        const buttonElm = document.getElementById("catch-button")
-        console.log(buttonElm)
-        if (!buttonElm){return}
-        buttonElm.classList.remove("d-none")
-    }
 
 }

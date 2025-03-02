@@ -1,9 +1,11 @@
+import { AppState } from "../AppState.js"
 import { generateId } from "../utils/GenerateId.js"
 
 export class Pokemon {
     constructor(data) {
         this.name = data.name
         this.id = generateId()
+        this.id = data.creatorId || null
     }
 
     get ListTemplate(){
@@ -16,10 +18,19 @@ export class Pokemon {
         return /*html*/ `
         <div class="btn d-flex justify-content-center justify-content-between">
         ${this.name.charAt(0).toUpperCase()+this.name.slice(1)}
-        <button class="button btn-warning rounded-pill" onclick="app.SandboxPokemonController.deletePokemon('${this.id}')">Release Pokemon!</button>
+        ${this.deleteButton}
         </div>
 
         `
+    }
+
+    get deleteButton(){
+        if (AppState.user){
+            return /*html*/ `
+            <button class="button btn-warning rounded-pill" onclick="app.SandboxPokemonController.deletePokemon('${this.creatorId}')">Release Pokemon!</button>
+            `
+        }
+        else return ''
     }
 
 }
@@ -44,7 +55,7 @@ export class SandboxPokemon extends Pokemon {
         <div class="bg-light shadow p-4 bg-primary sticky-top">  
             <div class=" mb-0 row text-center justify-content-center">
                 <h2 class='mb-0'>${this.name.charAt(0).toUpperCase() + this.name.slice(1)}</h2>
-                <div id="catch" type="btn" class="button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon()"> Catch! </div>
+                ${this.catchButton}
             </div>
 
             <div class=" mt-0 row img-fluid fs-1">
@@ -72,6 +83,14 @@ export class SandboxPokemon extends Pokemon {
         </div>
 
         `
+    }
+
+    get catchButton(){
+        if(AppState.user){
+            return /*html*/ `
+            <div id="catch" type="btn" class="button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon()"> Catch! </div>
+            `
+        }return ''
     }
 
 }

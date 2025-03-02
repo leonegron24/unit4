@@ -40,12 +40,19 @@ class SanboxPokemonService{
   }
 
   async deletePokemon(pokemonId){
-    const response = await api.delete(`api/pokemon/${pokemonId}`)
-    console.log('Pokemon was released!', response.data)
-    const pokemonToDelete = AppState.listedPokemon.find(pokemon => pokemonId == pokemonId)
-    if(!pokemonToDelete){return}
-    const indexToRemove = AppState.listedPokemon.indexOf(pokemonToDelete)
-    AppState.listedPokemon.splice(indexToRemove,1)
+    try {
+      const confirm = Pop.confirm("Are you sure you want to release this pokemon?")
+      if(!confirm){return}
+      const response = await api.delete(`api/pokemon/${pokemonId}`)
+      console.log('Pokemon was released!', response.data)
+      const pokemonToDelete = AppState.listedPokemon.findIndex(pokemon => pokemonId == pokemonId)
+      if(!pokemonToDelete){return}
+      AppState.listedPokemon.splice(pokemonToDelete,1)
+      
+    } catch (error) {
+      console.error('Error deleting Pokémon:', error);
+    }
   }
+  
 }
 export const sandboxPokemonService = new SanboxPokemonService()

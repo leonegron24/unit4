@@ -8,7 +8,7 @@ export class SandboxPokemonController {
         console.log('SandboxPokemon 🎛️')
         // SandboxController.js
         AppState.on('listedPokemon', this.drawSandboxList)
-        AppState.on('account', this.fetchPokemon)
+        AppState.on('account', this.fetchCaughtPokemon)
     }
 
     async catchPokemon(){
@@ -29,7 +29,7 @@ export class SandboxPokemonController {
         setHTML('sandbox-list', listContent)
     }
     
-    async fetchPokemon(){
+    async fetchCaughtPokemon(){
         try {
             sandboxPokemonService.fetchCaughtPokemon()
         } catch (error) {
