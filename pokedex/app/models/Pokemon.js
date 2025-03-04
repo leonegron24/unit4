@@ -4,8 +4,7 @@ import { generateId } from "../utils/GenerateId.js"
 export class Pokemon {
     constructor(data) {
         this.name = data.name
-        this.id = generateId()
-        this.id = data.creatorId || null
+        this.id = data.id
     }
 
     get ListTemplate(){
@@ -27,7 +26,7 @@ export class Pokemon {
     get deleteButton(){
         if (AppState.user){
             return /*html*/ `
-            <button class="button btn-warning rounded-pill" onclick="app.SandboxPokemonController.deletePokemon('${this.creatorId}')">Release Pokemon!</button>
+            <button class="button btn-warning rounded-pill" onclick="app.SandboxPokemonController.deletePokemon('${this.id}')">Release Pokemon!</button>
             `
         }
         else return ''
@@ -52,7 +51,7 @@ export class SandboxPokemon extends Pokemon {
 
     get activeTemplate(){
         return /*html*/ `
-        <div class="bg-light shadow p-4 bg-primary sticky-top">  
+        <div class="bg-light shadow p-4 bg-primary">  
             <div class=" mb-0 row text-center justify-content-center">
                 <h2 class='mb-0'>${this.name.charAt(0).toUpperCase() + this.name.slice(1)}</h2>
                 ${this.catchButton}
@@ -86,6 +85,8 @@ export class SandboxPokemon extends Pokemon {
     }
 
     get catchButton(){
+        const caughtPokemon = AppState.listedPokemon.find(pokemon => pokemon.name == this.name)
+        if (caughtPokemon) return /*html*/ `<div class='text-success'>Already Caught! </div>`
         if(AppState.user){
             return /*html*/ `
             <div id="catch" type="btn" class="button btn btn-warning rounded-pill w-25 mt-4" onclick="app.SandboxPokemonController.catchPokemon()"> Catch! </div>

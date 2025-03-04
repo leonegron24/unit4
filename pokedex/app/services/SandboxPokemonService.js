@@ -41,12 +41,10 @@ class SanboxPokemonService{
 
   async deletePokemon(pokemonId){
     try {
-      const confirm = Pop.confirm("Are you sure you want to release this pokemon?")
-      if(!confirm){return}
       const response = await api.delete(`api/pokemon/${pokemonId}`)
       console.log('Pokemon was released!', response.data)
-      const pokemonToDelete = AppState.listedPokemon.findIndex(pokemon => pokemonId == pokemonId)
-      if(!pokemonToDelete){return}
+      const pokemonToDelete = AppState.listedPokemon.findIndex(pokemon => pokemon.id == pokemonId)
+      if(pokemonToDelete === -1){return}
       AppState.listedPokemon.splice(pokemonToDelete,1)
       
     } catch (error) {

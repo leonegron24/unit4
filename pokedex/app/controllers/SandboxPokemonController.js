@@ -40,6 +40,8 @@ export class SandboxPokemonController {
 
     async deletePokemon(pokemonId){
         console.log('deleting pokemon:', pokemonId)
+        const confirm = await Pop.confirm('Are you sure you want to release this pokemon?')
+        if (!confirm) {return}
         try {
             sandboxPokemonService.deletePokemon(pokemonId)
         } catch (error) {
