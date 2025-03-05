@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": ".git",
+      "path": ".git"
+    },
+    {
+      "name": "asyncgregslist",
+      "path": "asyncgregslist"
+    },
+    {
+      "name": "gift",
+      "path": "gift"
+    },
+    {
+      "name": "pokedex",
+      "path": "pokedex"
+    },
+    {
+      "name": "triviadb",
+      "path": "triviadb"
+    }
+  ]
+}

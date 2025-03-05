@@ -1,0 +1,48 @@
+/* BASIC STYLES HERE */
+.profile-picture {
+  height: 200px;
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.profile-picture.profile-picture-sm {
+  height: 64px;
+}
+
+.formStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  border-bottom: 2px solid white;
+
+}
+
+html, body, main {
+  height: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+main > .row {
+  flex-grow: 1; /* Allows the row to take up the remaining space */
+  display: flex;
+}
+
+.col-md-4, .col-md-8 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+.col-md-4 {
+  justify-content: flex-start; /* Keeps content at the top */
+}
+
+.col-md-8 {
+  overflow-y: auto; /* Allows right column content to scroll */
+}

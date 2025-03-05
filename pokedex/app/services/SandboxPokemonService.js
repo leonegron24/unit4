@@ -25,6 +25,7 @@ class SanboxPokemonService{
           const response = await api.post('api/pokemon', pokemonData);
           console.log('Response from API:', response.data);
           AppState.listedPokemon.push(new Pokemon(response.data));
+          AppState.emit('activePokemon')
       } catch (error) {
           console.error('Error catching Pokémon:', error);
       }
