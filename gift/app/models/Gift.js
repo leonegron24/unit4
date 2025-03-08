@@ -1,3 +1,5 @@
+import { AppState } from "../AppState.js"
+
 export class Gift{
     constructor(data){
 
@@ -24,6 +26,9 @@ export class Gift{
     }
 
     get openGiftButton(){
+      if (this.opened){
+        return ''
+      }
       return /*html*/ `
       <button onclick="app.GiftController.openGift('${this.id}')" class='btn btn-danger btn-sm rounded-pill w-25 shadow position-absolute top-0 end-0 m-2'>Open 🎁</button>
       `

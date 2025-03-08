@@ -21,5 +21,12 @@ class GiftService{
         const indexToUpdate = AppState.gifts.indexOf(giftToOpen)
         AppState.gifts.splice(indexToUpdate,1,new Gift(response.data))
     }
+
+    async createGift(formData){
+        console.log('servicing gift creation!')
+        const response = await api.post('api/gifts', formData)
+        console.log('form response data', response.data)
+        AppState.gifts.push(new Gift(response.data))
+    }
 }
 export const giftService = new GiftService()

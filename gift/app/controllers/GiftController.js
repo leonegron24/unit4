@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { giftService } from "../services/GiftService.js"
+import { getFormData } from "../utils/FormHandler.js"
 import { Pop } from "../utils/Pop.js"
 import { setHTML } from "../utils/Writer.js"
 
@@ -36,6 +37,21 @@ export class GiftController{
         } catch (error) {
             Pop.toast("Could not open Gift", 'error')
             console.error("Error while trying to open a gift", error)
+        }
+    }
+
+    async createGift(){
+        console.log('creating Gift!')
+        try {
+            if(!event){return}
+            event.preventDefault()
+            const formElm = event.target
+            console.log(formElm)
+            const formData = getFormData(formElm)
+            await giftService.createGift(formData)
+        } catch (error) {
+            Pop.toast("Could not create Gift", 'error')
+            console.error("Error while trying to create a gift")
         }
     }
 }

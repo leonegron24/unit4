@@ -48,15 +48,15 @@
            <h2 class="p-2 fw-bold">Gifted</h2>
           <!-- Form -->
            <div class="row p-3">
-            <form id="gift-form" class="formStyle text-white border-underline" action="">
+            <form onsubmit="app.GiftController.createGift()" id="gift-form" class="formStyle text-white border-underline" action="">
               <div class="mb-3 w-100">
                 <label for="tag" class="form-label">Tag</label>
-                <input id="tag" class="form-control" name="tag" type="text" placeholder="Tag your gift!" maxlength="120">
+                <input required id="tag" class="form-control" name="tag" type="text" placeholder="Tag your gift!" maxlength="120">
               </div>
             
               <div class="mb-3 w-100">
                 <label for="url" class="form-label">URL</label>
-                <input id="url" class="form-control" name="url" type="url" placeholder="Enter GIF URL here" maxlength="120">
+                <input required id="url" class="form-control" name="url" type="url" placeholder="Enter GIF URL here" maxlength="120">
               </div>
             
               <div class="d-flex w-100 justify-content-end">
