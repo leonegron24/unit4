@@ -1,4 +1,4 @@
-import { Gift } from './models/Gift.js'
+import { Gift, SandboxGift } from './models/Gift.js'
 import { EventEmitter } from './utils/EventEmitter.js'
 import { createObservableProxy } from './utils/ObservableProxy.js'
 
@@ -10,6 +10,9 @@ class ObservableAppState extends EventEmitter {
 
 /**@type {Gift[]} */
   gifts = []
+
+/**@type {SandboxGift[]} */
+sandboxGift = []
 }
 
 export const AppState = createObservableProxy(new ObservableAppState())

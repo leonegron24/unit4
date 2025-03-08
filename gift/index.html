@@ -68,7 +68,7 @@
         </div>
 
         <div class="row p-3">
-          <form id="search-form" class="d-flex text-white" action="">
+          <form onsubmit="app.GiphyController.search()" id="search-form" class="d-flex text-white" action="">
             <div class="mb-3 w-100">
               <label class="mb-1" for="searchGift">Search for Gifs</label>
               <div class="input-group">
@@ -79,6 +79,11 @@
               </div>
             </div>
           </form>
+          <p id="result-count"></p>
+          <div id="searchResults">
+
+          </div>
+          
         </div> 
       </div>
 

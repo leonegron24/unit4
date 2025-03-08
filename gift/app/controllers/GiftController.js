@@ -30,6 +30,24 @@ export class GiftController{
         setHTML('gift-card', giftContent)
     }
 
+    
+    async createGift(){
+        console.log('creating Gift!')
+        try {
+            if(!event){return}
+            event.preventDefault()
+            const formElm = event.target
+            console.log(formElm)
+            const formData = getFormData(formElm)
+            await giftService.createGift(formData)
+            if(!formElm){return}
+            formElm.reset()
+        } catch (error) {
+            Pop.toast("Could not create Gift", 'error')
+            console.error("Error while trying to create a gift")
+        }
+    }
+
     async openGift(giftId){
         console.log('opening gift...')
         try {
@@ -40,18 +58,14 @@ export class GiftController{
         }
     }
 
-    async createGift(){
-        console.log('creating Gift!')
+    async deleteGift(giftId){
         try {
-            if(!event){return}
-            event.preventDefault()
-            const formElm = event.target
-            console.log(formElm)
-            const formData = getFormData(formElm)
-            await giftService.createGift(formData)
+            const confirm = await Pop.confirm('Are you sure you want to delete this gift?')
+            if(!confirm){return}
+            await giftService.deleteGift(giftId)
         } catch (error) {
-            Pop.toast("Could not create Gift", 'error')
-            console.error("Error while trying to create a gift")
+            Pop.toast("Could not delete Gift", 'error')
+            console.error("Error while trying to delete a gift")
         }
     }
 }

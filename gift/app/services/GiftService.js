@@ -10,6 +10,14 @@ class GiftService{
         AppState.gifts = gifts
     }
 
+    
+    async createGift(formData){
+        console.log('servicing gift creation!')
+        const response = await api.post('api/gifts', formData)
+        console.log('form response data', response.data)
+        AppState.gifts.unshift(new Gift(response.data))
+    }
+
     async openGift(giftId){
         console.log('servicing openGift...')
         const gifts = AppState.gifts
@@ -22,11 +30,15 @@ class GiftService{
         AppState.gifts.splice(indexToUpdate,1,new Gift(response.data))
     }
 
-    async createGift(formData){
-        console.log('servicing gift creation!')
-        const response = await api.post('api/gifts', formData)
-        console.log('form response data', response.data)
-        AppState.gifts.push(new Gift(response.data))
+    async deleteGift(giftId){
+        console.log('servicing deleteGift...')
+        const gifts = AppState.gifts
+        const giftToDelete = gifts.find(g => g.id == giftId)
+        if (!giftToDelete){return}
+        const response = await api.delete(`api/gifts/${giftId}`)
+        console.log('delete gift response data', response.data)
+        const indexToRemove = AppState.gifts.indexOf(giftToDelete)
+        AppState.gifts.splice(indexToRemove,1)
     }
 }
 export const giftService = new GiftService()
