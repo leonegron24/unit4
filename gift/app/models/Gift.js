@@ -26,14 +26,19 @@ export class Gift{
     }
 
     get openOrDeleteGiftButton(){
-      if (this.opened){
+      if (this.opened && AppState.account?.id == this.creatorId){
         return /*html*/ `
         <button onclick="app.GiftController.deleteGift('${this.id}')" class='btn btn-danger btn-sm rounded-pill w-25 shadow position-absolute top-0 end-0 m-2'>🔥</button>
         `
-      }
+
+    
+      } 
+      if (!this.opened){
       return /*html*/ `
       <button onclick="app.GiftController.openGift('${this.id}')" class='btn btn-success btn-sm rounded-pill w-25 shadow position-absolute top-0 end-0 m-2'> 🎁</button>
       `
+      }
+      return ''
     }
 }
 

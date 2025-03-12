@@ -8,6 +8,7 @@ export class GiftController{
     
     constructor(){
         console.log("🎁 🎛️")
+        AppState.on('user', this.drawGifts)
         AppState.on('account', this.fetchGifts)
         AppState.on('gifts', this.drawGifts)
     }
