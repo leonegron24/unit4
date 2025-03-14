@@ -20,8 +20,21 @@
 <body class="vh-100 d-flex align-items-center justify-content-center" style="background: url('https://images.unsplash.com/photo-1741471884167-a2b08fb14a3e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8') center/cover no-repeat;">
   <!-- SECTION -->
   <header class="d-flex w-100  p-4 justify-content-between">
-      <div>Image By...</div>
-      <div> To DO LIST</div>
+    <!-- Image By... -->
+      <div class="parent">Image By...
+        <div class="hidden-content" id="author"></div>
+      </div>
+      <div>
+      <!--ToDo List! -->
+        <h4 class="text-center">To Do List <span class="mx-2" id="count"></span></h4>
+        <div class="mb-2">
+          <form onsubmit="app.ToDoController.postToDo()" class="row align-items-center" action="">
+            <textarea class="col-9"  placeholder="add new To Do Item!" name="description" id="addToDo"></textarea>
+            <button class="mx-2 btn btn-success col-2"><i class="mdi mdi-plus"></i></button>
+          </form>
+        </div>
+        <div id="toDoList"></div>
+      </div>
   </header>
   <!-- SECTION -->
   <main>
@@ -30,18 +43,18 @@
   
   
   </main>
-  <section class="pb-4">Quote will be inserted here!</section>
+  <section id="quote" class="pb-4"></section>
   
   <!-- SECTION -->
-  <footer class="footer-style text-center justify-content-between row mb-4  p-4">
-    <div id="weather" class=" col-3">
+  <footer class="footer-style text-center align-items-center justify-content-between row mb-4  p-4">
+    <div id="weather" class=" col-md-3">
     </div>
-    <div class=" col-5">10:30 PM</div>
-    <div class="col-3 align-items-center">
-      <div class="row">
-        <div id="user-name" class="col-4">User Name</div>
-        <div id="user-picture" class="col-4 p-2"></div>
-        <div class="col-4" id="authstate"></div>
+    <div id="time" class=" col-md-5"></div>
+    <div class="col-md-3">
+      <div class="row align-items-center">
+        <div id="user-name" class="col-md-5"></div>
+        <div id="user-picture" class="col-md-4 p-2"></div>
+        <div class="col-md-2" id="authstate"></div>
       </div>
     </div>
   </footer>

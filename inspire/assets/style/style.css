@@ -12,17 +12,33 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  color: #89cc0d;
+  color: white;
   font-weight: bolder;
   font-size: larger;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to right, white, #ddd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
 }
 
 .footer-style {
   background: rgba(0, 0, 0, 0.186); /* Semi-transparent black */
-  backdrop-filter: blur(5px); /* Blurred background effect */
+  backdrop-filter: blur(2px); /* Blurred background effect */
   border-radius: 15px; /* Rounded corners */
   padding: 15px 20px;
   text-align: center;
   color: white; /* Ensure text is visible */
   width: 95%;
+}
+
+.hidden-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.parent:hover .hidden-content {
+  opacity: 1;
+  visibility: visible;
 }
